@@ -1,0 +1,20 @@
+{
+  "name": "full-stack-open-part-9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "calculateBmi": "ts-node utils/bmiCalculator.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hfmckenna/full-stack-open-part-9.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hfmckenna/full-stack-open-part-9/issues"
+  },
+  "homepage": "https://github.com/hfmckenna/full-stack-open-part-9#readme"
+}
