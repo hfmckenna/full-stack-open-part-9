@@ -1,6 +1,6 @@
 import { exerciseCalculator } from "./utils/calculators";
 
-interface CalculateValues {
+export interface CalculateValues {
   hours: Array<number>;
   target: number;
 }
