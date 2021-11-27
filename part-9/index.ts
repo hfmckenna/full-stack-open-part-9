@@ -1,14 +1,11 @@
-import express from 'express';
-const app = express();
-app.use(express.json());
+import app from './app'
 
-const PORT = 3000;
+import http from "http";
+import { PORT } from "./utils/config";
+import { logInfo } from "./utils/logger";
 
-app.get('/ping', (_req, res) => {
-    console.log('someone pinged here');
-    res.send('pong');
-});
+const server = http.createServer(app);
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+server.listen(PORT, () => {
+  logInfo(`Server running on port ${PORT}`);
 });
