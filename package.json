@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/hfmckenna/full-stack-open-part-9/issues"
   },
-  "homepage": "https://github.com/hfmckenna/full-stack-open-part-9#readme"
+  "homepage": "https://github.com/hfmckenna/full-stack-open-part-9#readme",
+  "devDependencies": {
+    "@types/node": "^16.11.10",
+    "prettier": "^2.5.0"
+  }
 }
