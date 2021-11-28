@@ -6,3 +6,15 @@ GET http://localhost:3001/api/diagnoses
 
 ### patients
 GET http://localhost:3001/api/patients
+
+### add patients
+POST http://localhost:3001/api/patients
+content-type: application/json
+
+{
+  "name": "Mongo Jerry",
+  "ssn": "123444",
+  "dateOfBirth": "1982-03-22",
+  "gender": "male",
+  "occupation": "Like a glove"
+}
