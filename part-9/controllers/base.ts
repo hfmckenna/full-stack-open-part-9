@@ -1,7 +1,9 @@
-const express = require('express');
-const baseRouter = express.Router();
+import { Router } from 'express';
+import { Request, Response } from "express";
 
-baseRouter.get('/', (_req, res) => {
+const baseRouter = Router();
+
+baseRouter.get('/', (_req: Request, res: Response) => {
     console.log('someone pinged here');
     res.send('pong');
 });
