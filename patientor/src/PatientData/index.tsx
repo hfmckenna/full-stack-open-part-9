@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Icon, SemanticICONS } from "semantic-ui-react";
-import { useStateValue } from "../state";
+import { addPatient, useStateValue } from "../state";
 import { Patient } from "../types";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
@@ -10,7 +10,6 @@ const PatientData = () => {
   const { id } = useParams<{ id: string }>();
 
   const [{ patients }, dispatch] = useStateValue();
-  console.log(patients);
   const [patient, setPatient] = useState<Patient>();
   const [icon, setIcon] = useState<SemanticICONS>("spinner");
 
@@ -19,7 +18,7 @@ const PatientData = () => {
       `${apiBaseUrl}/patients/${fullPatientId}`
     );
     setPatient(data);
-    dispatch({ type: "ADD_PATIENT", payload: data });
+    dispatch(addPatient(data));
   };
 
   useEffect(() => {

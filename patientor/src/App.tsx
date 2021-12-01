@@ -17,10 +17,10 @@ const App = () => {
 
     const fetchPatientList = async () => {
       try {
-        const { data: patientListFromApi } = await axios.get<Patient[]>(
+        const { data }: { data: Patient[] } = await axios.get<Patient[]>(
           `${apiBaseUrl}/patients`
         );
-        dispatch({ type: "SET_PATIENT_LIST", payload: patientListFromApi });
+        dispatch({ type: "SET_PATIENT_LIST", payload: data });
       } catch (e) {
         console.error(e);
       }
