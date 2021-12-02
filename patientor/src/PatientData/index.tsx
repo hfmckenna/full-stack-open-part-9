@@ -20,6 +20,7 @@ const PatientData = () => {
     setPatient(data);
     dispatch(addPatient(data));
   };
+  console.log(patient);
 
   useEffect(() => {
     switch (patient?.gender) {
