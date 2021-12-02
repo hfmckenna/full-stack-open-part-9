@@ -28,9 +28,22 @@ interface OccupationalHealthcareEntry extends BaseEntry {
   };
 }
 
+export enum HealthCheckRating {
+  "Healthy" = 0,
+  "LowRisk" = 1,
+  "HighRisk" = 2,
+  "CriticalRisk" = 3
+}
+
+interface HealthCheckEntry extends BaseEntry {
+  type: "HealthCheck";
+  healthCheckRating: HealthCheckRating;
+}
+
 export type Entry =
     | HospitalEntry
-    | OccupationalHealthcareEntry;
+    | OccupationalHealthcareEntry
+    | HealthCheckEntry;
 
 export enum Gender {
   Male = "male",

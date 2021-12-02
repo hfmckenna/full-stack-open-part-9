@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Icon, SemanticICONS } from "semantic-ui-react";
 import { addPatient, useStateValue } from "../state";
-import { Patient } from "../types";
+import { Patient, Entry } from "../types";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
 
@@ -61,6 +61,26 @@ const PatientData = () => {
           <p>ssn: {patient?.ssn}</p>
           <p>occupation: {patient?.occupation}</p>
           <p>DOB: {patient?.dateOfBirth}</p>
+          {patient.entries && (
+            <div>
+              <h2>Entries</h2>
+              {patient.entries.map((entry: Entry) => {
+                return (
+                  <div key={entry.id}>
+                    <p>{entry?.date}</p>
+                    <p>{entry?.description}</p>
+                    {entry.diagnosisCodes && (
+                      <ul>
+                        {entry?.diagnosisCodes.map((code) => (
+                          <li key={code}>{code}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>
