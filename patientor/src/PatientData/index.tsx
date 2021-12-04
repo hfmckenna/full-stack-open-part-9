@@ -8,6 +8,7 @@ import { apiBaseUrl } from "../constants";
 import OccupationHealthcareEntry from "../components/OccupationHealthcareEntry";
 import HospitalEntry from "../components/HospitalEntry";
 import HealthCheckEntry from "../components/HealthCheckEntry";
+import EntryForm from "../components/EntryForm";
 
 const PatientData = () => {
   const { id } = useParams<{ id: string }>();
@@ -135,6 +136,7 @@ const PatientData = () => {
               })}
             </div>
           )}
+          <EntryForm id={patient.id} />
         </div>
       )}
     </div>
