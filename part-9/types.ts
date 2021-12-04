@@ -22,7 +22,8 @@ interface HospitalEntry extends BaseEntry {
 
 interface OccupationalHealthcareEntry extends BaseEntry {
   type: "OccupationalHealthcare";
-  sickLeave: {
+  employerName: string;
+  sickLeave?: {
     startDate: string;
     endDate: string;
   };
