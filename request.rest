@@ -24,3 +24,18 @@ content-type: application/json
   "gender": "male",
   "occupation": "Like a glove"
 }
+
+### add entry
+POST http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667/entries
+content-type: application/json
+
+{
+  "description": "this is a thing",
+  "date": "1982-03-22",
+  "specialist": "male",
+  "type": "Hospital",
+  "discharge": {
+    "date": "test",
+    "criteria": "test"
+  }
+}
