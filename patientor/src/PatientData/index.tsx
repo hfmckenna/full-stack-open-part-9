@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Icon, SemanticICONS } from "semantic-ui-react";
 import { addPatient, useStateValue } from "../state";
-import { Patient, Entry, Diagnosis } from "../types";
+import { Patient, Entry, Diagnosis, Diagnoses, assertNever } from "../types";
 import axios from "axios";
 import { apiBaseUrl } from "../constants";
-
-interface Diagnoses {
-  [key: string]: Diagnosis;
-}
+import OccupationHealthcareEntry from "../components/OccupationHealthcareEntry";
+import HospitalEntry from "../components/HospitalEntry";
+import HealthCheckEntry from "../components/HealthCheckEntry";
 
 const PatientData = () => {
   const { id } = useParams<{ id: string }>();
@@ -39,7 +38,7 @@ const PatientData = () => {
       if (entry.diagnosisCodes) {
         for (const code of entry.diagnosisCodes) {
           try {
-            const { data }: {data: Diagnosis} = await axios.get<Diagnosis>(
+            const { data }: { data: Diagnosis } = await axios.get<Diagnosis>(
               `${apiBaseUrl}/diagnoses/${code}`
             );
             (diagnosisInfo as Diagnoses)[code] = data;
@@ -91,6 +90,26 @@ const PatientData = () => {
     }
   }, [patients]);
 
+  const EntryDetails: React.FC<{ entry: Entry; diagnoses: Diagnoses }> = ({
+    entry,
+  }) => {
+    switch (entry.type) {
+      case "Hospital":
+        return <HospitalEntry entry={entry} diagnoses={diagnoses} />;
+        break;
+      case "OccupationalHealthcare":
+        return (
+          <OccupationHealthcareEntry entry={entry} diagnoses={diagnoses} />
+        );
+        break;
+      case "HealthCheck":
+        return <HealthCheckEntry entry={entry} diagnoses={diagnoses} />;
+        break;
+      default:
+        return assertNever(entry);
+    }
+  };
+
   return (
     <div>
       {patient && (
@@ -107,25 +126,11 @@ const PatientData = () => {
               <h2>Entries</h2>
               {patient?.entries.map((entry: Entry) => {
                 return (
-                  <div key={entry.id}>
-                    <p>{entry?.date}</p>
-                    <p>{entry?.description}</p>
-                    {entry.diagnosisCodes && (
-                      <ul>
-                        {entry?.diagnosisCodes.map((code) => {
-                          if (diagnoses[code]?.name !== undefined) {
-                            return (
-                              <li key={code}>
-                                {code}: {diagnoses[code].name}
-                              </li>
-                            );
-                          } else {
-                            return <li key={code}>{code}</li>;
-                          }
-                        })}
-                      </ul>
-                    )}
-                  </div>
+                  <EntryDetails
+                    key={entry.id}
+                    entry={entry}
+                    diagnoses={diagnoses}
+                  />
                 );
               })}
             </div>

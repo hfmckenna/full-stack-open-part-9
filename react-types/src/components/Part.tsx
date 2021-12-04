@@ -1,11 +1,5 @@
 import React, { ReactElement } from "react";
-import { CoursePart } from "../types";
-
-const assertNever = (value: never): never => {
-  throw new Error(
-    `Unhandled discriminated union member: ${JSON.stringify(value)}`
-  );
-};
+import { CoursePart, assertNever } from "../types";
 
 const Part = ({ coursePart }: { coursePart: CoursePart }): ReactElement => {
   const { name, exerciseCount } = coursePart;
